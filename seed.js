@@ -102,11 +102,14 @@ async function makeRentals(rentalCount){
       _borrower:outputJson[borrowerID][0]._id,
     }
 
-    // console.log(rentalInfo);
+    if(rentalInfo._owner && rentalInfo._item && rentalInfo._borrower){
+      // console.log(rentalInfo);
     let rentalData = await superagent.post(`${backendUrl}/rentaldoc`)
-        .set('Authorization', `Bearer ${outputJson[ownerID][0].token}`)
-        .send(rentalInfo);  
+      .set('Authorization', `Bearer ${outputJson[ownerID][0].token}`)
+      .send(rentalInfo);  
     rentals.push(rentalData.body);
+    }
+    
   }
 
 }
