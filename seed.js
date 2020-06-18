@@ -23,11 +23,13 @@ async function makeUsers(userNum){
   for(let x = 0; x < userNum; x++){
     let userObj = [];
   
+    let photoNum = Math.floor(Math.random() * 1050);
     let userInfo = {
       userName:`${faker.name.firstName()}${faker.name.lastName()}`,
       password:'password',
       email:`${faker.internet.email()}`,
       address:`${faker.address.streetAddress()}`,
+      avatar: `https://picsum.photos/id/${photoNum}/200`
     };
   
     
