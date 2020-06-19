@@ -31,7 +31,6 @@ async function makeUsers(userNum){
       address:`${faker.address.streetAddress()}`,
       avatar: `https://picsum.photos/id/${photoNum}/200`
     };
-  
     
     let results = await superagent.post(`${backendUrl}/signup`).send(userInfo);
     
@@ -55,12 +54,14 @@ async function makeItems(itemCount){
     let itemList = [];
 
     for(let x = 0; x < itemCount; x++){
+      let photoNum = Math.floor(Math.random() * 1050);
       let itemInfo = {
           _owner: outputJson[i][0]._id,
           item: `${faker.commerce.productAdjective()} ${faker.commerce.productName()}`,
           type:`${faker.commerce.product()}`,
           subCategory:`${faker.commerce.department()}`,
-          description:`${faker.lorem.sentence()}`
+          description:`${faker.lorem.sentence()}`,
+          image:`https://picsum.photos/id/${photoNum}/200`,
         }  
       let itemReturn = await superagent.post(`${backendUrl}/item`)
       .set('Authorization', `Bearer ${outputJson[i][0].token}`)
